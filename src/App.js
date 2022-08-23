@@ -9,7 +9,14 @@ import Error from './pages/Error'
 import Navbar from './components/Navbar'
 function App() {
   return (
-    <h3>App</h3>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About />}/>
+        <Route path="*" element={<Error />}/>
+      </Routes>
+    </Router>
   )
 }
 
