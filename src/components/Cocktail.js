@@ -1,9 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Cocktail = () => {
+const Cocktail = ( {id, name, image, info, glass} ) => {
   return(
-    <h3>Cocktail</h3>
+    <article className='cocktaik'>
+      <div className="img-container">
+        <img src={image} alt={name} />
+      </div>
+      <div className="cocktail-footer">
+        <h3>{name}</h3>
+        <h4>{glass}</h4>
+        <p>{info}</p>
+      </div>
+    </article>
   )
 }
 
