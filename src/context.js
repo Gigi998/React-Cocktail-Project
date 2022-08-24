@@ -1,22 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { useCallback } from 'react'
+import React, { useState, useContext, useEffect, useCallback } from 'react'
 
 const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s='
 const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
 
-  const [cocktailName, setCocktailName] = useState("tequila")
+  const [cocktailName, setCocktailName] = useState("rum")
   const [loading, setLoading] = useState(true)
   const [cocktails, setCocktails] = useState([])
 
   //Fetching data
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     setLoading(true)
     try {
       const response = await fetch(`${url}${cocktailName}`)
       const data = await response.json()
-      console.log(data.drinks)
       const {drinks} = data
       //Checking and making new object
       if(drinks){
@@ -41,27 +39,27 @@ const AppProvider = ({ children }) => {
       }else{
         setCocktails([])
       }
-      setLoading(false)
     } catch (error) {
       console.log(error)
-      setLoading(false)
     }
-  }
+    setLoading(false)
+  },[cocktailName])
 
   useEffect(() => {
     fetchData()
-  },[cocktailName])
-
+  },[cocktailName,fetchData])
+ 
   return <AppContext.Provider 
       value={{
         loading,
         cocktails,
         cocktailName,
         setCocktailName,
+        setLoading,
       }}
     >{children}</AppContext.Provider>
 }
-// make sure use
+
 export const useGlobalContext = () => {
   return useContext(AppContext)
 }

@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useGlobalContext } from '../context'
-import { useRef } from 'react'
 
 const SearchForm = () => {
 
