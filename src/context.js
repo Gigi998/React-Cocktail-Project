@@ -6,7 +6,7 @@ const AppContext = React.createContext()
 
 const AppProvider = ({ children }) => {
 
-  const [cocktailName, setCocktailName] = useState("a")
+  const [cocktailName, setCocktailName] = useState("tequila")
   const [loading, setLoading] = useState(true)
   const [cocktails, setCocktails] = useState([])
 
@@ -57,6 +57,7 @@ const AppProvider = ({ children }) => {
         loading,
         cocktails,
         cocktailName,
+        setCocktailName,
       }}
     >{children}</AppContext.Provider>
 }
