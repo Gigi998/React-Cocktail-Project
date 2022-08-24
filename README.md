@@ -7,7 +7,7 @@ css was made before by udemy
 ### Starting project
 
 ```sh
-npm init && npm start
+npm install && npm start
 ```
 
 #### React Router Fix
